@@ -39,9 +39,11 @@ void extractComponent (char* input)
 	  }
 	else
 	  {
-	    //copy contents of input into component
-	    memcpy(component, input, i);
-	    printf("%s\n", component);
+	     //copy contents of input into component
+            memcpy(component, input, i);
+            printf("%s\n", component);
+            memset(component, '\0', i);
+            printf("State: %s\n", component);
 	  }
       }
 	  
