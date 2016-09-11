@@ -29,9 +29,9 @@ void extractComponent (char* input)
   for(i = 0; i < strlen(input)+1; i++)
     {
       //if current character is not alphabetic, allocate memory for new component
-      if((isalpha(input[i]) == 0 && i > 0) && input[i+1] != '\0')
+      if((isalpha(input[i]) == 0 && i > 0) || input[i] == '\0')
 	{
-	  
+	    
 	  //printf("Here:%d %c\n",i, input[i]);
 	  component  = (char *)malloc(sizeof(char)*(1+i-pos));
 	  if(component == NULL)
@@ -44,35 +44,35 @@ void extractComponent (char* input)
 	      memcpy(component, &input[pos], (i-pos));
 	      component[strlen(component)+1] = '\0';
 	      if(component[0]!= '\0')
-	      {
-	 	printf("%s\n", component);
-	      }
+		{
+		  printf("%s\n", component);
+		}
 	      pos = i + 1;
 	      free(component);
 
 	      /*
 		    if(strlen(component) == 0)
-		          {
-			  memcpy(component, input, i);
-			  printf("If: %s\n", component);
-			  component = (char*)realloc(component, sizeof(char)*i);
-			        }
-				    else
-				          {
-					  printf("Size: %zd\n", strlen(component));
-					  //copy contents of input into component
-					  memcpy(component, &input[strlen(component)], (strlen(component))-i);
-					  printf("Else: %s\n", component);
-					        }
-						    //copy contents of input into component
-						        //memcpy(component, &input[strlen(component)], (strlen(component))-i);
-							    //printf("%s\n", component);
-							    // free(component);*/
+		              {
+			        memcpy(component, input, i);
+				  printf("If: %s\n", component);
+				    component = (char*)realloc(component, sizeof(char)*i);
+				            }
+					        else
+						          {
+							    printf("Size: %zd\n", strlen(component));
+							      //copy contents of input into component
+							        memcpy(component, &input[strlen(component)], (strlen(component))-i);
+								  printf("Else: %s\n", component);
+								          }
+									      //copy contents of input into component
+									              //memcpy(component, &input[strlen(component)], (strlen(component))-i);
+										          //printf("%s\n", component);
+											  // free(component);*/
 	    }
 	}
       else
 	{
-	 
+	   
 	}
     }
 }
