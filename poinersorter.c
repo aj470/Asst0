@@ -23,6 +23,8 @@ void extractComponent (char* input)
 {
   int i;
   char * component;    
+  int pos = 0;
+  //component  = (char *)malloc(sizeof(char)*(strlen(input)));
 	  
   for(i = 0; i < strlen(input); i++)
     {
@@ -31,19 +33,37 @@ void extractComponent (char* input)
       {
 	
 	//printf("Here:%d %c\n",i, input[i]);
-       	component  = (char *)malloc(sizeof(char)*(i-1));
-	if(component == NULL)
+	component  = (char *)malloc(sizeof(char)*(i-pos));
+       	if(component == NULL)
 	  {
 	    printf("Error: Unable to allocate 'component'\n");
 	    return;
 	  }
 	else
 	  {
-	     //copy contents of input into component
-            memcpy(component, input, i);
-            printf("%s\n", component);
-            memset(component, '\0', i);
-            printf("State: %s\n", component);
+	    memcpy(component, &input[pos], (i-pos));
+	    printf("Else: %s\n", component);
+	    pos = i;
+	    free(component);
+
+	    /*
+	    if(strlen(component) == 0)
+	      {
+		memcpy(component, input, i);
+		printf("If: %s\n", component);
+		component = (char*)realloc(component, sizeof(char)*i);
+	      }
+	    else
+	      {
+		printf("Size: %zd\n", strlen(component));
+		//copy contents of input into component
+		memcpy(component, &input[strlen(component)], (strlen(component))-i);
+		printf("Else: %s\n", component);
+	      }
+	    //copy contents of input into component
+	    //memcpy(component, &input[strlen(component)], (strlen(component))-i);
+	    //printf("%s\n", component);
+	    // free(component);*/
 	  }
       }
 	  
