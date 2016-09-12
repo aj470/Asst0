@@ -18,7 +18,7 @@ typedef struct _LList
 LList* createList()
 {
   //allocate list poiner
-  LList *lp = (LList*)malloc(sizeof(LList));
+  LList *lp = (LList*)malloc(sizeof(struct _LList));
   if (lp == NULL) 
     {
       printf("ERR in 'createList': Malloc failed\n");
@@ -37,12 +37,15 @@ Node* createNode(char* add)
 {
   Node* create = malloc(sizeof(Node));
   if(create == NULL)
-  {
-    return NULL;
-  }
-
+    {
+      return NULL;
+    }
+  
   create->str =(char *)malloc(sizeof(*add));
-  memcpy(create->str, add, sizeof(*add));
+  memcpy(create->str, add, sizeof(*add)); 
+  create->str[sizeof(create->str)+1] = '\0';
+  
+  return create;
 }
 
 /*void sortComponent (char *component)
@@ -54,10 +57,10 @@ int main(int argc, char *argv[])
 {
   //LList *listPtr = createList();
 
-  char * data = (char*)malloc(sizeof(argv[1]));
-  memcpy(data, argv[1], sizeof(*argv[1]));
-
-  Node * output = createNode(data);
+  //char * data = (char*)malloc(sizeof(argv[1]));
+  //memcpy(data, argv[1], sizeof(*argv[1]));
+  
+  Node * output = createNode(argv[1]);
 
   printf("%s\n", output->str);
   
