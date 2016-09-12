@@ -6,12 +6,12 @@
 typedef struct _Node
 {
   char * str;
-  struct Node *next;
+  struct _Node *next;
 }Node;
 
 typedef struct _LList
 {
-  struct Node *head;
+  struct _Node *head;
   int listLength;
 }LList;
 
