@@ -36,10 +36,13 @@ LList* createList()
 Node* createNode(char* add)
 {
   Node* create = malloc(sizeof(Node));
+  if(create == NULL)
+  {
+    return NULL;
+  }
 
-  memcpy(create->str, add, sizeof(*add)); //*************SEG FAULTS HERE*************
-
-  return create;
+  create->str =(char *)malloc(sizeof(*add));
+  memcpy(create->str, add, sizeof(*add));
 }
 
 /*void sortComponent (char *component)
