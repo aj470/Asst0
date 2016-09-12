@@ -11,7 +11,7 @@ typedef struct _Node
 
 typedef struct _LList
 {
-  Node *head;
+  struct Node *head;
   int listLength;
 }LList;
 
@@ -26,7 +26,7 @@ LList* createList()
     }
 
   lp->head = malloc(sizeof(Node));
-  lp->head->str = NULL;
+  lp->head->str = '\0';
   lp->head->next = lp->head;
   lp->listLength = 0;
 
@@ -35,10 +35,8 @@ LList* createList()
 
 Node* createNode(char* add)
 {
-	//allocate memory for Node
   Node* create = malloc(sizeof(Node));
 
-  //copy contents to new Node
   memcpy(create->str, add, sizeof(*add));
 
   return create;
