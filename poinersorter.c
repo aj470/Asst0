@@ -37,7 +37,7 @@ Node* createNode(char* add)
 {
   Node* create = malloc(sizeof(Node));
 
-  memcpy(create->str, add, sizeof(*add));
+  memcpy(create->str, add, sizeof(*add)); //*************SEG FAULTS HERE*************
 
   return create;
 }
