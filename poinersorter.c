@@ -1,3 +1,7 @@
+/*
+******************CODE COMPLIES*********************
+*****************DIDN'T DEBUG YET*******************
+*/
 #include <string.h>
 #include <stdio.h>
 #include <ctype.h>
@@ -7,6 +11,7 @@ typedef struct _Node
 {
   char * str;
   struct _Node *next;
+  struct _Node *prev;
 }Node;
 
 typedef struct _LList
@@ -28,6 +33,7 @@ LList* createList()
   lp->head = malloc(sizeof(Node));
   lp->head->str = '\0';
   lp->head->next = lp->head;
+  lp->head->prev = lp->head;
   lp->listLength = 0;
 
   return lp;
@@ -42,25 +48,46 @@ Node* createNode(char* add)
     }
   
   create->str =(char *)malloc(sizeof(*add));
-  memcpy(create->str, add, sizeof(*add)); 
+  memcpy(create->str, add, strlen(add)); 
   create->str[sizeof(create->str)+1] = '\0';
+
+  create->next = NULL;
+  create->prev = NULL;
   
   return create;
 }
 
-/*void sortComponent (char *component)
+void sortComponent (LList *list, char *component)
 {
+  typedef enum {FALSE, TRUE} bool;
+  bool added = FALSE; //flag to check if item to be inserted is uniqueness
+  Node *current; //pointer to traverse list when inserting new items
+  current = list->head->next; //set pointet to start of list 
   
-}*/
+  while(!added && current != list->head)
+    {
+      if(strcmp(component, current->str) > 0)
+	{
+	  break;
+	}
+      current = current->next;
+    }
+  
+  Node *add = createNode(component);
+  add->prev = current->prev;
+  current->prev->next = add;
+  add->next = current;
+  current->prev = add;
+}
+
 
 int main(int argc, char *argv[])
 {
-  //LList *listPtr = createList();
-
-  //char * data = (char*)malloc(sizeof(argv[1]));
-  //memcpy(data, argv[1], sizeof(*argv[1]));
-  
+  LList *listPtr = createList();
+    
   Node * output = createNode(argv[1]);
+  
+  sortComponent(listPtr, output->str);
 
   printf("%s\n", output->str);
   
