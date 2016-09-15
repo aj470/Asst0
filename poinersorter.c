@@ -57,8 +57,6 @@ Node* createNode(char* add)
 
 void sortComponent (LList *list, char *component)
 {
-  typedef enum {FALSE, TRUE} bool;
-  bool added = FALSE; //flag to check if item to be inserted is uniqueness
   Node *current; //pointer to traverse list when inserting new items
   current = list->head->next; //set pointet to start of list 
   int i;
@@ -89,13 +87,11 @@ void extractComponent (LList* list , char* token)
 {
   char input[strlen(token)+2];
   int j;
-  //  input[0] = '"';
   for(j=0; j<strlen(token);j++)
     {
       input[j+1]= token[j];
     }
-  // input[strlen(token)+1]= '"';
-
+  
   int i; //for loop variable
   char * component;    //seperating a component from input
   int pos = 0; // tracks the poition count as we move through each character in input.
