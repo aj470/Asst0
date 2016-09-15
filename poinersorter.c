@@ -89,12 +89,12 @@ void extractComponent (LList* list , char* token)
 {
   char input[strlen(token)+2];
   int j;
-  input[0] = '"';
+  //  input[0] = '"';
   for(j=0; j<strlen(token);j++)
     {
       input[j+1]= token[j];
     }
-  input[strlen(token)+1]= '"';
+  // input[strlen(token)+1]= '"';
 
   int i; //for loop variable
   char * component;    //seperating a component from input
