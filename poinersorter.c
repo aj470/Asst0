@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct _Node
 {
@@ -42,11 +43,12 @@ Node* createNode(char* add)
     {
       return NULL;
     }
-  
+
+ 
   create->str =(char *)malloc(strlen(add)+1);
   memcpy(create->str, add, strlen(add)); 
   create->str[strlen(create->str)+1] = '\0';
-
+  //  printf("%s\n", create->str);
   create->next = NULL;
   create->prev = NULL;
   
@@ -59,10 +61,16 @@ void sortComponent (LList *list, char *component)
   bool added = FALSE; //flag to check if item to be inserted is uniqueness
   Node *current; //pointer to traverse list when inserting new items
   current = list->head->next; //set pointet to start of list 
-  
+  int i;
+  char *token;
   while(!added && current != list->head)
     {
-      if(strcmp(component, current->str) > 0)
+      token = (char *)malloc(sizeof(char)*strlen(component));
+      for(i=0;i<strlen(component);i++)
+	{
+	  token[i] = tolower(component[i]);
+	}
+      if(strcmp(token,current->str) < 0)
 	{
 	  break;
 	}
@@ -110,8 +118,8 @@ void extractComponent (LList* list , char* token)
 	      if(component[0]!= '\0') // if this wasn't the end then print the characters and continue
 		{
 		  sortComponent(list, component);
-		 		   
-		  printf("%s\n", component); // print the token
+		     
+		   printf("%s\n", component); // print the token
 		}
 	      pos = i + 1; // as the current place value in input was a deliminter so we will update current pos to i+1
 	      free(component); // release the component
@@ -123,7 +131,7 @@ void extractComponent (LList* list , char* token)
 int main(int argc, char *argv[])
 {
   LList *listPtr = createList();
-    
+  
   //check if user input data
   if(argc < 2)
     {
@@ -137,6 +145,18 @@ int main(int argc, char *argv[])
     {
       extractComponent(listPtr, argv[i]);
     }
-   
+  
+  Node * traverse;
+  traverse = listPtr->head->next;
+
+  while(traverse != listPtr->head)
+    {
+      //      printf("%s\n", traverse->str);
+      free(traverse->str);
+      traverse = traverse -> next;
+    }
+  free(traverse);
+  free(listPtr);
+    
   return 0;
 }
