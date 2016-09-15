@@ -4,79 +4,88 @@
 #include <stdlib.h>
 #include <string.h>
 
+//struct for nodes that will be added to list
 typedef struct _Node
 {
-  char * str;
-  struct _Node *next;
-  struct _Node *prev;
+  char * str; //holds string stored in list
+  struct _Node *next; //pointer to next node
+  struct _Node *prev; //pointer to previous node
 }Node;
 
+//struct for list to hold sorted words
 typedef struct _LList
 {
-  struct _Node *head;
-  int listLength;
+  struct _Node *head; //holds address of list head
+  int listLength; //holds number of nodes in list
 }LList;
 
 LList* createList()
 {
   //allocate list poiner
   LList *lp = (LList*)malloc(sizeof(struct _LList));
+  //if returns NULL, memory was not allocated
   if (lp == NULL) 
     {
       printf("ERR in 'createList': Malloc failed\n");
       return NULL;
     }
 
-  lp->head = malloc(sizeof(Node));
-  lp->head->str = '\0';
-  lp->head->next = lp->head;
-  lp->head->prev = lp->head;
+  lp->head = malloc(sizeof(Node));//allocate memory and store as address of list head
+  lp->head->str = '\0'; //initialize str component to null terminator
+  lp->head->next = lp->head; //set address of next
+  lp->head->prev = lp->head; //set addres of prev
   lp->listLength = 0;
 
-  return lp;
+  return lp; //return list pointer
 }
 
 Node* createNode(char* add)
 {
+  //allocate memory for node being created
   Node* create = malloc(sizeof(Node));
+  //if malloc returns NULL, memory was not allocated
   if(create == NULL)
     {
       return NULL;
     }
 
- 
-  create->str =(char *)malloc(strlen(add)+1);
-  memcpy(create->str, add, strlen(add)); 
-  create->str[strlen(create->str)+1] = '\0';
-  create->next = NULL;
-  create->prev = NULL;
   
-  return create;
+  create->str =(char *)malloc(strlen(add)+1); //allocate memory for str member
+  memcpy(create->str, add, strlen(add)); //copy string argument into struct
+  create->str[strlen(create->str)+1] = '\0'; //null terminate the string
+  create->next = NULL; //intialize next
+  create->prev = NULL; //initialize prev
+  
+  return create; //return created node
 }
 
 void sortComponent (LList *list, char *component)
 {
-  typedef enum {FALSE, TRUE} bool;
-  bool added = FALSE; //flag to check if item to be inserted is uniqueness
   Node *current; //pointer to traverse list when inserting new items
   current = list->head->next; //set pointet to start of list 
-  int i;
+  int i; //for loop iterator
   char *token;
-  while(!added && current != list->head)
+  
+  //loop goes through list until it finds head of list
+  while(current != list->head)
     {
       token = (char *)malloc(sizeof(char)*strlen(component));
+      //convert each character from component into lower case and store in token 
       for(i=0;i<strlen(component);i++)
 	{
 	  token[i] = tolower(component[i]);
 	}
+      //if token comes before current break from loop
       if(strcmp(token,current->str) < 0)
 	{
 	  break;
 	}
+      //continue through list
       current = current->next;
     }
   
-  Node *add = createNode(component);
+  Node *add = createNode(component); //function call to create node
+  //attach new node to list
   add->prev = current->prev;
   current->prev->next = add;
   add->next = current;
@@ -92,7 +101,6 @@ void extractComponent (LList* list , char* input)
   
   for(i = 0; i < strlen(input)+1; i++) //for loop from starting to '\0' of the input.
     {
-      //      printf("Current Character: %c\n", input[i]);
       //if current character is not alphabetic, allocate memory for new component
       if((isalpha(input[i]) == 0) || input[i] == '\0') //check to see if  input[i] is not not alpha or its last character in input.
 	{
@@ -121,6 +129,7 @@ void extractComponent (LList* list , char* input)
 
 int main(int argc, char *argv[])
 {
+  //create list to hold sorted components
   LList *listPtr = createList();
   
   //check if user input data
@@ -136,13 +145,13 @@ int main(int argc, char *argv[])
     {
       extractComponent(listPtr, argv[i]);
     }
-  
+  //create a node to go through list for freeing memory
   Node * traverse;
   traverse = listPtr->head->next;
 
+  //loop to free memory that was allocated
   while(traverse != listPtr->head)
     {
-      //      printf("%s\n", traverse->str);
       free(traverse->str);
       traverse = traverse -> next;
     }
