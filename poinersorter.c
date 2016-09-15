@@ -48,7 +48,6 @@ Node* createNode(char* add)
   create->str =(char *)malloc(strlen(add)+1);
   memcpy(create->str, add, strlen(add)); 
   create->str[strlen(create->str)+1] = '\0';
-  //  printf("%s\n", create->str);
   create->next = NULL;
   create->prev = NULL;
   
@@ -57,6 +56,8 @@ Node* createNode(char* add)
 
 void sortComponent (LList *list, char *component)
 {
+  typedef enum {FALSE, TRUE} bool;
+  bool added = FALSE; //flag to check if item to be inserted is uniqueness
   Node *current; //pointer to traverse list when inserting new items
   current = list->head->next; //set pointet to start of list 
   int i;
@@ -83,21 +84,15 @@ void sortComponent (LList *list, char *component)
 }
 
 
-void extractComponent (LList* list , char* token)
+void extractComponent (LList* list , char* input)
 {
-  char input[strlen(token)+2];
-  int j;
-  for(j=0; j<strlen(token);j++)
-    {
-      input[j+1]= token[j];
-    }
-  
   int i; //for loop variable
   char * component;    //seperating a component from input
   int pos = 0; // tracks the poition count as we move through each character in input.
   
   for(i = 0; i < strlen(input)+1; i++) //for loop from starting to '\0' of the input.
     {
+      //      printf("Current Character: %c\n", input[i]);
       //if current character is not alphabetic, allocate memory for new component
       if((isalpha(input[i]) == 0) || input[i] == '\0') //check to see if  input[i] is not not alpha or its last character in input.
 	{
