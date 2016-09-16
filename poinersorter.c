@@ -117,8 +117,6 @@ void extractComponent (LList* list , char* input)
 	      if(component[0]!= '\0') // if this wasn't the end then print the characters and continue
 		{
 		  sortComponent(list, component);
-		     
-		   printf("%s\n", component); // print the token
 		}
 	      pos = i + 1; // as the current place value in input was a deliminter so we will update current pos to i+1
 	      free(component); // release the component
@@ -152,6 +150,7 @@ int main(int argc, char *argv[])
   //loop to free memory that was allocated
   while(traverse != listPtr->head)
     {
+      printf("%s\n", traverse->str);
       free(traverse->str);
       traverse = traverse -> next;
     }
