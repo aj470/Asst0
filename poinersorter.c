@@ -65,22 +65,28 @@ void sortComponent (LList *list, char *component)
   current = list->head->next; //set pointet to start of list 
   int i; //for loop iterator
   char *token;
-  
+  char *word;
   //loop goes through list until it finds head of list
   while(current != list->head)
     {
       token = (char *)malloc(sizeof(char)*strlen(component));
+      word = (char *)malloc(sizeof(char)*strlen(current->str));
       //convert each character from component into lower case and store in token 
       for(i=0;i<strlen(component);i++)
 	{
 	  token[i] = tolower(component[i]);
 	}
+      //convert each existing token in list into lower case and store in word for later comparision.
+      for(i=0;i<strlen(current->str); i++)
+	{
+	  word[i] = tolower(current->str[i]);
+	}
       //if token comes before current break from loop
-      if(strcmp(token,current->str) < 0)
+      if(strcmp(token,word) < 0)
 	{
 	  break;
 	}
-      //continue through list
+      //else continue through list
       current = current->next;
     }
   
@@ -90,6 +96,7 @@ void sortComponent (LList *list, char *component)
   current->prev->next = add;
   add->next = current;
   current->prev = add;
+
 }
 
 
@@ -130,6 +137,7 @@ int main(int argc, char *argv[])
   //create list to hold sorted components
   LList *listPtr = createList();
   
+  //  printf("%s\n%s\n%s", listPtr->head->str, listPtr->head->next->str, listPtr->head->prev->str);
   //check if user input data
   if(argc < 2)
     {
@@ -143,11 +151,11 @@ int main(int argc, char *argv[])
     {
       extractComponent(listPtr, argv[i]);
     }
-  //create a node to go through list for freeing memory
+  //create a head node to go through list for freeing memory
   Node * traverse;
   traverse = listPtr->head->next;
 
-  //loop to free memory that was allocated
+  //loop print nodes and free memory that was allocated
   while(traverse != listPtr->head)
     {
       printf("%s\n", traverse->str);
