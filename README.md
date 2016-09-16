@@ -1,6 +1,6 @@
 # ASSIGNMENT 0: Pointer Sorter
-By: Gabriel Gutierrez (gg548)
-      Ayush Joshi (aj470)
+Group 88: Gabriel Gutierrez (gg548)
+          Ayush Joshi (aj470)
 
 #Description:
 -	The implementation for pointer sorter uses a linked list structure to sort and store alphabetic components that were read in as input.
