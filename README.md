@@ -1,5 +1,5 @@
 #ASSIGNMENT 0: Pointer Sorter
-By: Gabriel Gutierrez (gg548)
+Group 88: Gabriel Gutierrez (gg548)
       Ayush Joshi (aj470)
 
 #Description:
