@@ -114,7 +114,7 @@ void extractComponent (LList* list , char* input)
 	  component  = (char *)malloc(sizeof(char)*(1+i-pos)); //allocate space for the i-pos, for example if "hello1world" then pos = 0 initally and when i=5, it will allocate for 5 space
 	  if(component == NULL) //check if space is alocated or not
 	    {
-	      printf("Error: Unable to allocate 'component'\n");
+	      printf("ERR: Unable to allocate 'component'\n");
 	      return;
 	    }
 	  else // if allocated
@@ -141,7 +141,7 @@ int main(int argc, char *argv[])
   //check if user input data
   if(argc < 2)
     {
-      printf("Error: Invalid input.\n");
+      printf("ERR: Invalid input.\n");
       exit(0);
     }
 
@@ -149,6 +149,12 @@ int main(int argc, char *argv[])
   int i;
   for(i = 1; i < argc; i++)
     {
+	  //check if current str is empty 
+      if(strlen(argv[i]) == 0)
+	{
+	  printf("ERR: Empty string in argument %d\n", i);
+	  continue;
+	}
       extractComponent(listPtr, argv[i]);
     }
   //create a head node to go through list for freeing memory
