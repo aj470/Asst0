@@ -12,7 +12,7 @@ Group 88: Gabriel Gutierrez (gg548) and Ayush Joshi (aj470)
 
 -	Input validation on the program ensures that argc is not less than 2 before running. Other errors being checked for ensuring malloc does not return a NULL pointer when called. Also checks for '\0' as end of strings.
 
-#Outputs: 
+#Output: 
 
 -     Our program outputs components/tokens from the input given in dictionary based lexicographical order as we thought the main purpose of assignment is to sort lexicographically. Our algorithm takes care of differences between Uppercase Alph and Lowercase Alph ASCII values and also does print 1-1 mapped output with input. When same component is in lowercase and upercase, we sort it into the first come first sorted basis. Example: "APPLES are apples", output is APPLES first and then apples. Example: "apples are Apples", output apples first then Apples.
 -     Other testcases included in testcases file.
