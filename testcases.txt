@@ -6,7 +6,7 @@ Test Case 1: Testing the Unknown Number of component strings in an input.
 Input:
 -bash-4.2$ ./pointersorter "The best website in the world is https://www.google.com. It will take you everywhere Search : https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=copycat : https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=copycat Search : https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=ice%20cream... AYUSH"
 
-Output:
+OUTPUT:
 AYUSH
 best
 chrome
@@ -75,7 +75,7 @@ Test Case 2: Testing the occurance of spefical characters with the escape charac
 Input:
 -bash-4.2$ ./pointersorter "\You must implement \/\/\//-\=\-\=-=\-all the functions and definitions below-=-=-___###\!~\~=-: SortedList====================================#what^^^here(we)use:::special{characters}="
 
-Output:
+OUTPUT:
 all
 and
 below
@@ -98,7 +98,7 @@ Test Case 3: Testing multiple arguments given to the program from bash.
 Input: 
 -bash-4.2$ ./pointersorter "How_%are_%you,,,today???"  "I([]am)@@^really_reallydoing (great)" "I&am*here"
 
-Output: 
+OUTPUT: 
 am
 am
 are
@@ -118,7 +118,7 @@ Test Case 4: Testing occurances of similar words as they occurances as Uppercase
 Input: 
 -bash-4.2$ ./pointersorter "You are Going to Be Very great as you Are going To be very Skillful."
 
-Output: 
+OUTPUT: 
 are
 Are
 as
@@ -142,7 +142,7 @@ Input:
 
 -bash-4.2$ ./pointersorter "WHY Numbers???? || Hexadecimal:Ox15252534634631 || Binary:0&&1 || Decimal:zero,one,2,3,4,five,6,7...8.9.ten|| Oct:too much! WHAT is 22 multpily 22??? What is 55multiply2==110\(one one ten\)??? ~~~~~   Creative test Case ------01ooo2ooo60---"\(Here you go\)""
 
-Output:
+OUTPUT:
 Binary
 Case
 Creative
@@ -174,7 +174,21 @@ WHY
 you
 zero
 
+Test Case 6: No input
 
+INPUT:
+-bash-4.2$ ./pointsorter
+
+OUTPUT:
+ERR: Invalid input.
+
+Test Case 7: Empty String
+
+INPUT:
+-bash-4.2$ ./point ""
+
+OUPUT:
+ERR: Empty string in argument 1
 
 ------xxx------
 ---Thank you---
