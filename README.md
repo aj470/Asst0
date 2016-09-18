@@ -4,7 +4,7 @@ Group 88: Gabriel Gutierrez (gg548) and Ayush Joshi (aj470)
 #Description:
 -	The implementation for pointer sorter uses a dynamic linked list structure to sort and store alphabetic components that were tokenized from the input.
 
--	Our pointer sorter reads in input from user and passes each element of argv[] in a for loop. If the argv[] deoesn't have input sting we prints error and exits program. If argv has input string, from there the extractComponent() function parses through the passed string to find components that are separated by non-alphabetic characters and passes it to the sortComponent() function where it is placed in a node and sorted into the linked list.
+-	Our pointer sorter reads in input from the user and passes each element of argv[] in a for loop. If argv[i] is an empty string, then the loop skips the iteration and goes onto the next element. If argv has input string, from there the extractComponent() function parses through the passed string to find components that are separated by non-alphabetic characters and passes it to the sortComponent() function where it is placed in a node and sorted into the linked list.
 
 -	We chose to sort our list by copying the current string to be sorted into a temp string and turn it into lower case (solely for comparisons) and also temporarily store the current node being turned into lower case and then compared using strcmp() on the lower case strings and if comparision returns a value < 0, the new node is added to previous to the node currently being pointed to.
 
