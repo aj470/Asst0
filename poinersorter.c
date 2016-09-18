@@ -1,3 +1,5 @@
+//Group 88: Gabriel Gutierrez (gg548) and Ayush Joshi (aj470)
+
 #include <string.h>
 #include <stdio.h>
 #include <ctype.h>
